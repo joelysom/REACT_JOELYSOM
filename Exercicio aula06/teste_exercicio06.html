@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios Aula 06 - Aluno: Joelysom</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .exercise {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .exercise p {
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .console {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            color: #0f0;
+            font-family: monospace;
+            border-radius: 5px;
+            overflow: auto;
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercícios Aula 06</h1>
+        <div class="exercise">
+            <h2>Exercício 1</h2>
+            <p>Manipulação de arrays usando métodos comuns.</p>
+            <button onclick="runExercise(1)">Executar</button>
+        </div>
+        <div class="exercise">
+            <h2>Exercício 2</h2>
+            <p>Uso de condicionais para verificar e imprimir mensagens.</p>
+            <button onclick="runExercise(2)">Executar</button>
+        </div>
+        <div class="exercise">
+            <h2>Exercício 3</h2>
+            <p>Utilização de loops para manipulação de strings e números.</p>
+            <button onclick="runExercise(3)">Executar</button>
+        </div>
+        <div class="exercise">
+            <h2>Exercício 4</h2>
+            <p>Explorando escopo em JavaScript com variáveis em diferentes blocos.</p>
+            <button onclick="runExercise(4)">Executar</button>
+        </div>
+        <div class="console" id="consoleLog">
+            Console: Clique em "Executar" para visualizar os resultados.
+        </div>
+    </div>
+
+    <script>
+        function runExercise(exerciseNumber) {
+            const consoleLog = document.getElementById('consoleLog');
+            consoleLog.textContent = ''; // Limpa o console
+
+            switch (exerciseNumber) {
+                case 1:
+                    consoleLog.textContent += "Exercício 1:\n";
+                    const numbers = [10, 20, 30, 40, 50];
+                    numbers.push(60);
+                    consoleLog.textContent += `Array após .push(): ${numbers}\n`;
+                    const removed = numbers.pop();
+                    consoleLog.textContent += `Elemento removido (.pop()): ${removed}\n`;
+                    const index = numbers.indexOf(30);
+                    consoleLog.textContent += `Índice do número 30 (.indexOf()): ${index}\n`;
+                    break;
+
+                case 2:
+                    consoleLog.textContent += "Exercício 2:\n";
+                    const temperature = 35;
+                    if (temperature > 40) {
+                        consoleLog.textContent += "Está muito quente!\n";
+                    } else if (temperature > 30) {
+                        consoleLog.textContent += "Está quente!\n";
+                    } else {
+                        consoleLog.textContent += "Está frio!\n";
+                    }
+                    break;
+
+                case 3:
+                    consoleLog.textContent += "Exercício 3:\n";
+                    const phrase = "JavaScript is fun!";
+                    let counter = 0;
+                    for (let i = 0; i < phrase.length; i++) {
+                        consoleLog.textContent += `Caractere ${i}: ${phrase[i]}\n`;
+                        if (phrase[i].toLowerCase() === 'a') counter++;
+                    }
+                    consoleLog.textContent += `Quantidade de letras 'a': ${counter}\n`;
+
+                    let number = 1;
+                    while (number <= 10) {
+                        consoleLog.textContent += `Número: ${number}\n`;
+                        number++;
+                    }
+                    break;
+
+                case 4:
+                    consoleLog.textContent += "Exercício 4:\n";
+                    const x = 100; // Escopo global
+                    consoleLog.textContent += `x (escopo global): ${x}\n`;
+
+                    function testScope() {
+                        const x = 50; // Escopo da função
+                        consoleLog.textContent += `x (escopo da função): ${x}\n`;
+                        if (true) {
+                            const x = 30; // Escopo do bloco
+                            consoleLog.textContent += `x (escopo do bloco): ${x}\n`;
+                        }
+                    }
+
+                    testScope();
+                    consoleLog.textContent += `x (fora da função): ${x}\n`;
+                    break;
+
+                default:
+                    consoleLog.textContent += "Exercício não encontrado.\n";
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
