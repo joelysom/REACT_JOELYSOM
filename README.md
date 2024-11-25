@@ -1,70 +1,150 @@
-# Getting Started with Create React App
+# Documentação do Componente MenuComponent
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Descrição Geral**
+O código é um componente do React chamado `MenuComponent`. Ele mostra uma lista de pratos em um layout responsivo. As informações dos pratos são armazenadas em um estado local e contém detalhes como nome, imagem, categoria, preço, etiqueta/label e descrição. O componente utiliza o pacote `reactstrap` para facilitar a estilização e o layout.
 
-## Available Scripts
+![tipo loja](Print_1.png)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## **A Estrutura do Código**
+### **1. Importações**
+```javascript
+import React, { useState } from 'react';
+import { Media } from 'reactstrap';
+```
+- **`React` e `useState`:** para criar o que é funcional e gerenciar o estado local.
+- **`Media` (reactstrap):** para renderizar layouts baseados em mídia, como imagens e texto associados.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### **2. Estrutura do Estado Local**
+O estado `dishes` é definido usando `useState`. Ele contém um array de objetos, onde cada objeto representa um prato.
 
-### `npm test`
+#### Exemplo de um Objeto do Estado:
+```javascript
+{
+  id: 0,
+  name: 'Uthappizza',
+  image: '/assets/images/uthappizza.png',
+  category: 'mains',
+  label: 'Hot',
+  price: '4.99',
+  description: 'Uma combinação única de Uthappam indiano e pizza italiana.'
+}
+```
+![Print2](Print_2.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Propriedades:**
+- **`id`:** Identificador do prato.
+- **`name`:** Nome do prato.
+- **`image`:** Caminho para a imagem do prato.
+- **`category`:** Categoria (entrada, prato principal, sobremesa).
+- **`label`:** Etiqueta("Hot" ou "New").
+- **`price`:** Preço do prato.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **3.Lista de Pratos**
+O `map` é usado para o array de pratos e gerar os elementos JSX correspondentes.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Código:
+```javascript
+const menu = dishes.map((dish) => {
+  return (
+    <div key={dish.id} className="col-12 mt-5">
+      <Media tag="li">
+        <Media left middle>
+          <Media object src={dish.image} alt={dish.name} />
+        </Media>
+        <Media body className="ml-5">
+          <Media heading>{dish.name}</Media>
+          <p>{dish.description}</p>
+        </Media>
+      </Media>
+    </div>
+  );
+});
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**O que acontece aqui?🤔**
+1. **`map`faz:** Cada objeto `dish` do array é transformado em JSX.
+2. **Renderização de Elementos:**
+   - **Imagem:** `<Media object src={dish.image} />`.
+   - **Nome do Prato:** `<Media heading>{dish.name}</Media>`.
+3. **Identificador `key`:** para fazer cada "elemento" ser unico na lista.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **4. Layout Principal**
+O JSX final é retornado `return`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Trecho do Código:
+```javascript
+return (
+  <div className="container">
+    <div className="row">
+      <Media list>
+        {menu}
+      </Media>
+    </div>
+  </div>
+);
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Detalhes:**
+- **`<div className="container">`:** Define um contêiner principal responsivo.
+- **`<div className="row">`:** Faz um grupo dos "elementos" em uma linha.
+- **`<Media list>`:** Lista de itens do tipo mídia.
+- **`{menu}`:** Insere os "elementos" gerados pela função `map`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+### **5. Exportação do Componente**
+O componente é exportado como padrão, assim pode ser usado em outros arquivos.
+```javascript
+export default Menu;
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **Dependências**
+1. **Reactstrap:** precisa ter o pacote `reactstrap` instalado:
+   ```bash
+   npm install reactstrap bootstrap
+   ```
 
-### Code Splitting
+2. **Bootstrap:** por o CSS do Bootstrap no arquivo `index.js`:
+   ```javascript
+   import 'bootstrap/dist/css/bootstrap.min.css';
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## **Configuração de Imagens**
+As imagens precisam ser colocadas na pasta `public/assets/images` para serem mostradas.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Exemplo de Caminho:**
+```plaintext
+public/assets/images/uthappizza.png
+```
+No código:
+```javascript
+image: '/assets/images/uthappizza.png',
+```
+---
 
-### Making a Progressive Web App
+## **Resumo**
+O `MenuComponent` é responsável por criar uma lista de pratos usando React e Reactstrap. Ele organiza os dados e estiliza os elementos utilizando classes do Bootstrap e recursos de layout.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+**👍Dicas Legais👍:**
+- criar funcionalidades de interação, como eventos de clique ou seleção de pratos.(tipo aqueles cardápios digitais de hoje em dia).
+- Melhorar o acesso e a resposta para dispositivos móveis(tentei usar o link remoto para acessar o teste pelo wi-fi do senac e ficou meio bugado).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Notinhas📜:**
+- achei interessante o useState para gerenciar o estado local do componente de forma fácil, mantendo os dados dos pratos centralizados.
+Adicionar, remover ou modificar pratos será fácil, porque, os dados estão em um único local.
+# **"Que nada nos defina. Que nada nos sujeite. Que a liberdade seja a nossa própria substância."** - Simone de Beauvoir
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
