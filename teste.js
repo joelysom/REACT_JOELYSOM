@@ -71,3 +71,8 @@ flour batter accompanied with a sweet-tangy tamarind sauce'
                 ); 
             }; 
             export default Menu;
+            . . . 
+            import Menu from './components/MenuComponent'; 
+            . . . 
+                <Menu /> 
+                . . . 
