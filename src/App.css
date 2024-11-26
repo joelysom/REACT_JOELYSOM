@@ -11,7 +11,7 @@ body {
     margin-top: 20px;
   }
   
-  /* Navbar */
+  /* Navbar, cor de fundo*/
   .navbar {
     background-color: #007bff !important;
   }
@@ -21,7 +21,7 @@ body {
     font-size: 1.5rem;
   }
   
-  /* Cards */
+  /* Cards - tentei animar eles tipo crescer ao passar o mouse*/
   .card {
     cursor: pointer;
     transition: transform 0.2s;
