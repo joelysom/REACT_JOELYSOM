@@ -96,3 +96,10 @@ aprofundei demais, enfim meu readme!!
 - ALUNO: JOELYSOM
 - TURMA: 109
 - CURSO: T.I
+
+---
+
+- ***OBS:*** usei `1..5 | ForEach-Object { New-Item -ItemType File -Name "senac_UC13_aula11_q$_.js" }
+`
+
+- no TERMINAL para criar os arquivos js todos de uma vez para depois preenche-los, acho legal esses detalhes do windows.
