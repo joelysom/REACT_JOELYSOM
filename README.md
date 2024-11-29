@@ -1,146 +1,130 @@
+# Documentação do Projeto React - Detalhamento de Pratos e Comentários
+
+## ALUNOS: Joelysom Alcantara & José lucas Luiz
+## TURMA: 109
+## CURSO: T.I
+
+Ess documento mostra os passos realizados no projeto React, onde criamos um site q exibe detalhes de pratos, incluindo ingredientes, receitas e comentários bonitinhos. Adicionamos funcionalidades, estilos e dados para melhorar a experiência do comprador.
 
 ---
 
-## README.md (Aula 10)
-***ALUNO: JOELYSOM ALCANTARA DA SILVA***
+## **Passo a Passo da Implementação**
 
-***TURMA: 109 - AULA 10***
+### **1. Configuração Inicial**
+1. Criamos um projeto React usando o comando `npx create-react-app`.
+2. Instalamos o Reactstrap e Bootstrap para estilização:
+   ```bash
+   npm install reactstrap bootstrap
+   ```
+3. Importamos o Bootstrap no arquivo `index.js`:
+   ```javascript
+   import 'bootstrap/dist/css/bootstrap.min.css';
+   ```
 
 ---
 
-### Título: Alterações no Projeto do Restaurante (Aula 10)
+### **2. Estrutura de Dados dos Pratos**
+- O arquivo `dishes.js` ciramos para armazenar os dados dos pratos.
+- Cada prato tem os seguintes detalhes:
+  - **id**: Identificador.
+  - **name**: Nome do prato.
+  - **image**: Caminho para a imagem.
+  - **category**: Categoria do prato.
+  - **label**: Rótulo (ex: Apimentado, Novo).
+  - **price**: Preço.
+  - **description**: Descrição.
+  - **ingredients**: Lista de ingredientes.
+  - **recipe**: Instruções de preparo.
+  - **comments**: Lista de comentários com autor, data, classificação e conteúdo.
 
-### Breve descrição das alterações feitas na aula:
-- **Adição de estilos personalizados** para melhorar a interface do site, utilizando arquivos CSS para estilização.
-- Atualização do **arquivo `MenuComponent.js`** para incluir um novo layout mais elegante, com classes estilizadas e responsividade.
-- Criação de novos componentes como o **`DishDetailComponent.js`** para separar a lógica de exibição dos pratos selecionados.
-- Modificação do **arquivo `App.js`** para integrar as alterações no layout e simplificar a lógica do projeto.
-- Atualização do **arquivo `dishes.js`** para incluir novos pratos (Poção da Paciência, Poção do Amor, Poção da Morte), com descrições e imagens relevantes.
-- Adicionado mais protudos, poções legais e divertidas.
-![POTION](bullLOVE.png)
-- Adicionei(PELO MENOS TENTEI) fazer um `css/App.css` para deixar mais bonitinho
+Exemplo de entrada no `dishes.js`:
 ```javascript
-/* Estilo Geral */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
-  }
-  
-  .container {
-    margin-top: 20px;
-  }
-  
-  /* Navbar, cor de fundo*/
-  .navbar {
-    background-color: #007bff !important;
-  }
-  
-  .navbar-brand {
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  
-  /* Cards - tentei animar eles tipo crescer ao passar o mouse*/
-  .card {
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-  .card-title {
-    font-size: 1.2rem;
-    color: #007bff;
-  }
-  
-  .card-text {
-    font-size: 0.9rem;
-    color: #555;
-  }
-  
-  .card-img-overlay {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-  }
+{
+  id: 0,
+  name: 'Uthappizza',
+  image: 'assets/images/uthappizza.png',
+  category: 'principais',
+  label: 'Apimentado',
+  price: '4.99',
+  description: 'Uma combinação única de Uthappam indiano (panqueca) e pizza italiana.',
+  ingredients: [
+    'Uthappam',
+    'Tomates cereja',
+    'Cebola Vidalia',
+    'Pimentas Guntur',
+    'Paneer de búfalo'
+  ],
+  recipe: 'Prepare o Uthappam, adicione os ingredientes e asse até dourar.',
+  comments: [
+    { id: 0, rating: 5, comment: "Imagine todos os alimentos vivendo na confusão!", author: "John Lemon", date: "2012-10-16T17:57:28.556094Z" }
+  ]
+}
 ```
 
 ---
 
-### MenuComponent.js
+### **3. Componentes no React**
 
-**Descrição:**
-Este arquivo é responsável por exibir a lista de pratos no menu e permitir que o usuário selecione um prato para visualizar seus detalhes.
+#### **3.1. MenuComponent**
+- Usamos para exibir os pratos em forma de cartões que saltam.
+- Ao clicar em um prato, o componente exibe os detalhes completos no `DishDetail`.
+- Implementado em `MenuComponent.js`.
 
-**Perguntas:**
+#### **3.2. DishdetailComponent**
+- Exibe detalhes do prato selecionado, incluindo ingredientes, receita e comentários.
+- Implementado em `DishdetailComponent.js` com as seguintes funções:
+  - **renderDish**: Detalha os detalhes do prato.
+  - **renderComments**: Mostra os comentários associados ao prato.
 
-1. **Quais os imports utilizados?**
-   - `React`: Para criar componentes funcionais.
-   - `useState`: Para controlar o estado do prato selecionado.
-   - `reactstrap`: Para utilizar os componentes `Card`, `CardImg`, `CardImgOverlay`, `CardText`, `CardBody` e `CardTitle` e construir o layout.
+#### **3.3. Estilização no CSS**
+- Melhor estilo para tornar a pagina mais atrativa.
+- Adicionamos hover, espaçamento, bordas arredondadas e sombras nos comentários.
 
-2. **Há componentes? O que fazem?**
-   - Sim, há componentes como `Card` e `CardImg` que exibem visualmente os pratos.
-   - O componente principal (`Menu`) é responsável por desenhar o menu de pratos e chamar o método para exibir os detalhes do prato selecionado.
+Exemplo de estilização em `App.css`:
+```css
+.comment-container {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-3. **Para que serve o `onDishSelect` no projeto?**
-   - Serve para definir o prato selecionado no estado do componente, permitindo que seus detalhes sejam exibidos.
-
-4. **Para que serve o `renderDish`?**
-   - Renderiza os detalhes do prato selecionado. Caso nenhum prato esteja selecionado, retorna uma `<div>` vazia.
-
-5. **Para que serve o `props.dishes.map`?**
-   - É utilizado para iterar sobre a lista de pratos (`dishes`) e gerar dinamicamente os cartões (`Card`) para cada prato no menu.
-
----
-
-### dishes.js
-
-**Descrição:**
-Este arquivo contém os dados dos pratos que serão exibidos no menu, incluindo nome, imagem, descrição e preço.
-
-**Perguntas:**
-
-1. **Quais as propriedades?**
-   - `id`: Identificação única do prato.
-   - `name`: Nome do prato.
-   - `image`: Caminho da imagem do prato.
-   - `description`: Descrição do prato.
-   - `price`: Preço do prato.
-
-2. **Que tipo de dado é utilizado?**
-   - Os pratos são mostrados como objetos dentro de um array (`DISHES`), com propriedades de diferentes tipos como `string` (nome, descrição, imagem) e `number` (preço).
+.comment-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+```
 
 ---
 
-### App.js
+### **4. Adição de Comentários Aleatórios**
+- Atualizamos o arquivo `dishes.js` para incluir entre 2 a 5 comentários por prato.
+- Cada comentário inclui autor, data, rating e conteúdo.
 
-**Descrição:**
-Este arquivo é o ponto de entrada do projeto e conecta os componentes principais, como o menu e os dados dos pratos.
-
-**Perguntas:**
-
-1. **Para que serve o `const [dishes]`?**
-   - Serve para armazenar a lista de pratos (importada de `dishes.js`) como estado local do componente.
-
-2. **Explicar como funciona o `<Menu dishes={dishes} />`:**
-   - Ess componente que é chamado dentro do `App.js` e recebe a lista de pratos como uma props (`props.dishes`), que é utilizada no `MenuComponent.js` para desenhar os pratos no menu.
+Exemplo:
+```javascript
+comments: [
+  { id: 0, rating: 5, comment: "Adorei a combinação de sabores.", author: "Chris P. Bacon", date: "2021-11-01T12:57:28.556094Z" },
+  { id: 1, rating: 4, comment: "Bem diferente e gostoso!", author: "Dough Nut", date: "2023-03-23T14:18:28.556094Z" }
+]
+```
 
 ---
 
-## ***NOTINHAS***👻
-- Foi simples adicionar novos produtos copiando e colando os anteriores, usando o google tradutor para traduzir as partes que não entendi.
-- Tentei deixar o nome na frente e tela mais escura para facilitar ao usuário, indentificar o produto/prato que aparece.
-- Acho legal destacar que é fácil alterar e deixar mais bonito.. principalmente adicionando ao `App.css` alguns detalhes que expliquei acima.
+## **Dicas**
+1. **Reutilize Componentes:** Componentize elementos reutilizáveis como botões e cards para simplificar o código.
+2. **Aprimore Estilos:** Pequenos detalhes como sombras e espaçamentos melhoram muito a experiência do usuário.
+3. **Atenção ao JSON:** Certifique-se de que os dados dos pratos estejam no formato correto para evitar erros no React.
+4. **Teste Constantemente:** Utilize o navegador para verificar se as funcionalidades estão funcionando conforme esperado após cada alteração.
+
 ---
 
-## **"Você tem que aprender a deixar o que você quer acontecer, acontecer."** - Glinda (WICKED - O Magico de Oz)
+## **Reflexão Final**
+> ## "A simplicidade é o último grau de sofisticação."
+> ## \- **Leonardo da Vinci**
+
+No desenvolvimento dos detalhes, a simplicidade significa criar sistemas intuitivos, com códigos limpos e funcionais. Este projeto exemplifica como organizar dados e criar componentes reutilizáveis, garantindo, assim, uma experiência elegante e eficiente.
+

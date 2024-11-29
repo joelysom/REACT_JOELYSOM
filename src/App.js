@@ -11,8 +11,15 @@ function App() {
     <div>
       <Navbar dark color="primary" expand="md">
         <div className="container">
-          <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-          <div>Aluno: Joelysom Alcantara da Silva</div>
+          <NavbarBrand href="/">
+            <img
+              src="Icon.png"
+              alt="Logo do Restaurante"
+              style={{ width: '30px', height: '30px', marginRight: '10px' }}
+            />
+            Ristorante Con Fusion
+          </NavbarBrand>
+          <div>Alunos: Joelysom Alcantara da Silva & José Lucas Luiz</div>
         </div>
       </Navbar>
       <Menu dishes={dishes} />
