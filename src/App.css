@@ -91,3 +91,92 @@ ul.list-unstyled {
   padding-left: 0;
   list-style-type: none;
 }
+/* Ajustar o tamanho dos cards */
+.dish-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dish-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Imagem do card */
+.dish-card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Sobreposição do título */
+.dish-card-overlay {
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  height: 100%;
+}
+
+/* Título */
+.dish-card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+/* Espaçamento entre os cards */
+.row {
+  gap: 10px;
+}
+/* Modal content */
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+/* Cards */
+.dish-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dish-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.dish-card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.dish-card-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  height: 100%;
+}
+
+.dish-card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}

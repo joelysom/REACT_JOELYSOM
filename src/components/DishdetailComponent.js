@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
-const DishDetail = ({ dish }) => {
+const DishDetail = ({ dish, isOpen, toggle }) => {
   const renderDish = (dish) => {
     if (!dish) return <div></div>;
 
@@ -32,8 +32,7 @@ const DishDetail = ({ dish }) => {
 
   const renderComments = (comments) => {
     if (!comments || comments.length === 0) return <div></div>;
-  
-    // Iterar sobre a lista de comentários
+
     const commentList = comments.map((comment) => (
       <li className="comment-container" key={comment.id}>
         <p className="comment-text">"{comment.comment}"</p>
@@ -45,23 +44,23 @@ const DishDetail = ({ dish }) => {
         </p>
       </li>
     ));
-  
-    // Retornar todos os comentários
+
     return (
       <div>
         <h4>Comentários</h4>
         <ul className="list-unstyled">{commentList}</ul>
       </div>
     );
-  };    
+  };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12 col-md-5 m-1">{renderDish(dish)}</div>
-        <div className="col-12 col-md-5 m-1">{dish ? renderComments(dish.comments) : null}</div>
-      </div>
-    </div>
+    <Modal isOpen={isOpen} toggle={toggle}>
+      <ModalHeader toggle={toggle}>{dish ? dish.name : 'Detalhes do Prato'}</ModalHeader>
+      <ModalBody>
+        <div>{dish ? renderDish(dish) : null}</div>
+        <div>{dish ? renderComments(dish.comments) : null}</div>
+      </ModalBody>
+    </Modal>
   );
 };
 
