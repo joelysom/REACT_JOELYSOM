@@ -1,7 +1,17 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalBody, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button,
+} from 'reactstrap';
 
-const DishDetail = ({ dish, isOpen, toggle }) => {
+const DishDetail = ({ dish, isOpen, toggle, addToCart }) => {
   const renderDish = (dish) => {
     if (!dish) return <div></div>;
 
@@ -16,7 +26,7 @@ const DishDetail = ({ dish, isOpen, toggle }) => {
           <CardTitle>{dish.name}</CardTitle>
           <CardText>{dish.description}</CardText>
           <CardText>
-            <strong>Preço:</strong> {dish.price}
+            <strong>Preço:</strong> R$ {dish.price}
           </CardText>
           <CardText>
             <strong>Ingredientes:</strong>
@@ -59,6 +69,15 @@ const DishDetail = ({ dish, isOpen, toggle }) => {
       <ModalBody>
         <div>{dish ? renderDish(dish) : null}</div>
         <div>{dish ? renderComments(dish.comments) : null}</div>
+        {dish && (
+          <Button
+            color="primary"
+            className="mt-3"
+            onClick={() => addToCart(dish)}
+          >
+            Adicionar ao Carrinho
+          </Button>
+        )}
       </ModalBody>
     </Modal>
   );

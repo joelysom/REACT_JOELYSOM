@@ -153,6 +153,31 @@ export const DISHES = [
         { id: 2, rating: 4, comment: "Um pouco assustadora, mas incrível.", author: "Sorcerer Supreme", date: "2022-10-10T12:45:28.556094Z" },
         { id: 3, rating: 5, comment: "Recomendo com cuidado.", author: "Dark Knight", date: "2021-04-08T10:15:28.556094Z" }
       ]
+    },
+    {
+      id: 7,
+      name: 'Lava Cookie',
+      image: 'assets/images/lavacookie.jpg',
+      category: 'doce',
+      label: 'Clássico',
+      price: '200.00',
+      description: 'Um biscoito especial de Lavaridge Town que cura todas as condições de status de um Pokémon.',
+      ingredients: [
+        'Farinha de trigo',
+        'Açúcar',
+        'Manteiga',
+        'Essência de baunilha',
+        'Ovo',
+        'Chocolate ao leite',
+        'Pedaços de chocolate branco'
+      ],
+      recipe: 'Misture os ingredientes, molde os biscoitos e asse a 180°C por 10-12 minutos até dourar levemente.',
+      comments: [
+        { id: 0, rating: 5, comment: "É delicioso e muito útil!", author: "Pokémon Trainer Red", date: "2024-12-01T10:20:28.556094Z" },
+        { id: 1, rating: 4, comment: "Cura meu time rapidamente!", author: "May", date: "2023-07-15T14:10:28.556094Z" },
+        { id: 2, rating: 5, comment: "Gostoso e prático para viagens.", author: "Ash Ketchum", date: "2022-09-05T08:45:28.556094Z" },
+        { id: 3, rating: 4, comment: "Um clássico que nunca sai de moda.", author: "Misty", date: "2021-02-12T12:35:28.556094Z" }
+      ]
     }
   ];
   
